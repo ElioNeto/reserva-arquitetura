@@ -266,6 +266,7 @@ class ComposerStaticInit3853f75427302f15b1c543bacafd677c
     );
 
     public static $classMap = array (
+        'ClienteSeeder' => __DIR__ . '/../..' . '/database/seeds/ClienteSeeder.php',
         'CreatePasswordResetsTable' => __DIR__ . '/../..' . '/database/migrations/2014_10_12_100000_create_password_resets_table.php',
         'CreateQuartoTable' => __DIR__ . '/../..' . '/database/migrations/2018_11_05_074916_create_quarto_table.php',
         'CreateReservaTable' => __DIR__ . '/../..' . '/database/migrations/2018_10_30_185918_create_reserva__table.php',
@@ -749,6 +750,8 @@ class ComposerStaticInit3853f75427302f15b1c543bacafd677c
         'PHP_Token_XOR_EQUAL' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
         'PHP_Token_YIELD_FROM' => __DIR__ . '/..' . '/phpunit/php-token-stream/src/Token.php',
+        'QuartoSeeder' => __DIR__ . '/../..' . '/database/seeds/QuartoSeeder.php',
+        'ReservaSeeder' => __DIR__ . '/../..' . '/database/seeds/ReservaSeeder.php',
         'SebastianBergmann\\Comparator\\ArrayComparator' => __DIR__ . '/..' . '/sebastian/comparator/src/ArrayComparator.php',
         'SebastianBergmann\\Comparator\\Comparator' => __DIR__ . '/..' . '/sebastian/comparator/src/Comparator.php',
         'SebastianBergmann\\Comparator\\ComparisonFailure' => __DIR__ . '/..' . '/sebastian/comparator/src/ComparisonFailure.php',

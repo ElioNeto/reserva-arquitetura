@@ -14,13 +14,13 @@ class ClienteController extends Controller
         $this->middleware('auth');
     }
     public function index() {
-        $clientes = Cliente::orderBy('created_at', 'nome', 'debito')->paginate(10);
+        $clientes = Cliente::orderBy('nome', 'debito')->paginate(10);
         return view('clientes_index', ['clientes' => $clientes]);
     }
     public function create(){
         return view('clientes.create');
     }
-    public function cliente(ClienteRequest $request){
+    public function store(ClienteRequest $request){
         $cliente = new Cliente;
 
         $cliente->nome                  =$request->nome;

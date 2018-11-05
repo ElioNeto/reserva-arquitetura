@@ -15,7 +15,7 @@ class QuartoController extends Controller
     public function create(){
         return view('quartos.create');
     }
-    public function quarto(QuartoRequest $request){
+    public function store(QuartoRequest $request){
         $quarto = new quarto;
 
         $quarto->descricao             =$request->descricao;

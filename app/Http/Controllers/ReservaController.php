@@ -15,7 +15,7 @@ class ReservaController extends Controller
     public function create(){
         return view('reservas.create');
     }
-    public function reserva(ReservaRequest $request){
+    public function store(ReservaRequest $request){
         $reserva = new Reserva;
 
         $reserva->id_cliente        = $request->id_cliente;

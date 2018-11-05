@@ -15,9 +15,12 @@ class Cliente extends Model
         'debito'
     ];
     protected $guarded = [
-        'id', 
-        'created_at', 
-        'update_at'
+        'deleted_at',
+        'update_at',
+        'id'
     ];
-    protected $table = 'usuario';
+    protected $table = 'cliente';
+   /* public function cliente(){
+        return $this->hasMany('App\Reserva');
+    }*/
 }
