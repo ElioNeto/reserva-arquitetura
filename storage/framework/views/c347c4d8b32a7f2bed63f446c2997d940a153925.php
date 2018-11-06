@@ -48,6 +48,7 @@
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
                     <li><a href="<?php echo e(url('/cliente')); ?>">Clientes</a></li>
+                    <li><a href="/">Importar json</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

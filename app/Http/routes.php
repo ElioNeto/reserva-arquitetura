@@ -14,6 +14,7 @@ Route::group(array('prefix' => 'apiCliente'), function(){
             'status'    =>  'Conectado'
         ]);;
     });
+    Route::get('test', 'ApiController@json_manipulate');
     Route::resource('api', 'ApiController');
 });
 

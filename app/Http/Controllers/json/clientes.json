@@ -1,0 +1,18 @@
+[  
+    {
+        "nome":"teste1",
+        "endereco":"outro",
+        "cpf":"029327672",
+        "data_cadastro":"7486",
+        "data_cancelamento":"382768",
+        "debito":"0"
+    },
+    {
+        "nome":"teste2",
+        "endereco":"outro",
+        "cpf":"029327672",
+        "data_cadastro":"7486",
+        "data_cancelamento":"382768",
+        "debito":"0"
+    }
+]
