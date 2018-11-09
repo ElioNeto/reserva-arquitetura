@@ -52,7 +52,7 @@ class ApiController extends Controller
         }
         $api->delete();
     }
-    public function json_manipulate(){
+    public function json_manipulate(Request $request){
         //Read file
         $jsonString     = file_get_contents(base_path('app/Http/Controllers/json/clientes.json'));
         $data           = json_decode($jsonString);
@@ -64,6 +64,23 @@ class ApiController extends Controller
             //echo $value->nome;
             $nome = $value->nome;
             echo $nome;
+
+            $request->nome                  =$value->nome;
+            $request->endereco              =$value->endereco;
+            $request->cpf                   =$value->cpf;
+            $request->data_cadastro         =$value->data_cadastro;
+            $request->data_cancelamento     =$value->data_cancelamento;
+            $request->debito                =$value->debito;
+
+            $cliente = new Cliente();
+            $cliente->nome                  =$request->nome;
+            $cliente->endereco              =$request->endereco;
+            $cliente->cpf                   =$request->cpf;
+            $cliente->data_cadastro         =$request->data_cadastro;
+            $cliente->data_cancelamento     =$request->data_cancelamento;
+            $cliente->debito                =$request->debito;
+            $cliente->save();
+
         }
     }
 }

@@ -2,17 +2,17 @@
     {
         "nome":"teste1",
         "endereco":"outro",
-        "cpf":"029327672",
+        "cpf":"01010101001",
         "data_cadastro":"7486",
         "data_cancelamento":"382768",
         "debito":"0"
     },
     {
         "nome":"teste2",
-        "endereco":"outro",
-        "cpf":"029327672",
-        "data_cadastro":"7486",
-        "data_cancelamento":"382768",
-        "debito":"0"
+        "endereco":"outros",
+        "cpf":"0293276745287672",
+        "data_cadastro":"2503",
+        "data_cancelamento":"2145",
+        "debito":"2"
     }
 ]
