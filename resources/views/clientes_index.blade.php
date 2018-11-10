@@ -1,6 +1,7 @@
 @extends('layouts.page')
 
 @section('content')
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -16,9 +17,10 @@
       <th scope="row">{{$value->id}}</th>
       <td>{{$value->nome}}</td>
       <td>{{$value->cpf}}</td>
-      <td>{{$value->endereco}}</td>
+      <td>{{$value->debito}}</td>
     </tr>
     @endforeach
   </tbody>
 </table>
+{{$clientes->links()}}
 @endsection

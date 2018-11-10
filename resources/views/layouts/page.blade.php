@@ -47,8 +47,8 @@
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
                 <!-- Left Side Of Navbar -->
                 <ul class="nav navbar-nav">
-                    <li><a href="{{ url('/cliente') }}">Clientes</a></li>
-                    <li><a href="/">Importar json</a></li>
+                    <li><a href="{{ url('/Cliente/lista') }}">Clientes</a></li>
+                    <li><a href="/apiCliente/test">Importar json</a></li>
                 </ul>
 
                 <!-- Right Side Of Navbar -->

@@ -80,7 +80,7 @@ class ApiController extends Controller
             $cliente->data_cancelamento     =$request->data_cancelamento;
             $cliente->debito                =$request->debito;
             $cliente->save();
-
         }
+        return redirect('/home');
     }
 }
