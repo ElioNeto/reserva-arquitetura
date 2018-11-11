@@ -23,4 +23,12 @@
   </tbody>
 </table>
 {{$clientes->links()}}
+<br>
+@if(session()->has('msg'))
+<div
+  id="st"
+  class="alert alert-sucess">
+  <p>{{session('msg')}}</p>
+</div>
+@endif
 @endsection

@@ -59,6 +59,7 @@ class ApiController extends Controller
 
         //echo $data->{'nome'};
         var_dump($data);
+        //$st = new \StdClass();
 
         foreach ($data as $key => $value) {
             //echo $value->nome;
@@ -81,6 +82,10 @@ class ApiController extends Controller
             $cliente->debito                =$request->debito;
             $cliente->save();
         }
-        return redirect('/home');
+       //$st->status = true;
+        $st= 'Import realizado com sucesso!';
+        return redirect()
+            ->action('ClienteController@index')
+            ->with('msg', $st);
     }
 }
