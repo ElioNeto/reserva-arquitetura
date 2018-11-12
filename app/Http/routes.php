@@ -24,8 +24,9 @@ Route::group(array('prefix'=>'Reserva'), function(){
     Route::get('index', 'ReservaController@index');
 });
 Route::group(array('prefix'=>'Quarto'), function(){
-    Route::get('busca', 'QuartoController@index');
-    Route::post('busca', 'QuartoController@index');
+    Route::get('cadastro', 'QuartoController@create');
+    Route::get('index', 'QuartoController@index');
+    Route::post('salvar', 'QuartoController@store');
 });
 
 /*** REDIRECTS ***/
@@ -34,6 +35,9 @@ Route::get('/', function(){
 });
 Route::get('Cliente', function(){
     return redirect('/Cliente/lista');
+});
+Route::get('Quarto', function(){
+    return redirect('/Quarto/index');
 });
 Route::get('/home', function(){
     return redirect('/Cliente');

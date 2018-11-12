@@ -53,7 +53,7 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/Cliente/lista') }}">Listar</a></li>
-                            <li><a href="/apiCliente/test">Importar json</a></li>
+                            <li><a href="{{ url('/apiCliente/test') }}">Importar json</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">
@@ -61,7 +61,15 @@
                         Reservas<span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu" role="menu">
-                            <li><a href="/Cliente/form">Criar reserva</a></li>
+                            <li><a href="{{ url('/Cliente/form') }}">Criar reserva</a></li>
+                        </ul>
+                    </li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                        Quartos<span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li><a href="{{ url('/Quarto/cadastro') }}">Cadastrar Quarto</a></li>
                         </ul>
                     </li>
                 </ul>
