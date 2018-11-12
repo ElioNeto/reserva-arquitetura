@@ -18,9 +18,5 @@ class Reserva extends Model
         'created_at', 
         'update_at'
     ];
-    //protected $table = 'reserva';
-    public function reserva(){
-        return $this->belongsTo('App\Cliente');
-        return $this->hasMany('App\Quarto');
-    }
+    protected $table = 'reserva';
 }

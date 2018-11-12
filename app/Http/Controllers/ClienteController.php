@@ -58,4 +58,20 @@ class ClienteController extends Controller
         $cliente->delete();
         return redirect()->route('clientes.index')->with('alert-success', 'Cliente deletado com sucesso!');
     }
+
+    public function busca(Request $request){
+        //var_dump($request->nome);
+        $cliente = Cliente::where('nome', 'LIKE', '%'.$request->nome.'%')->get();
+
+        return view('cliente_select', [
+            'clientes'  =>      $cliente,
+            'nome'      =>      $request->nome
+        ]);
+    }
+    public function form(){
+        return view('cliente_busca');
+    }
+    public function teste(Request $request){
+        var_dump($request->id);
+    }
 }
