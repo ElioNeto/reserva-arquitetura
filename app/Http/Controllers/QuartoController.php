@@ -9,6 +9,12 @@ use App\Quarto;
 
 class QuartoController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index() {
         $quartos = Quarto::orderBy('status')->paginate(10);
         return view('quarto_index', ['quartos' => $quartos]);;
@@ -22,6 +28,7 @@ class QuartoController extends Controller
 
         $quarto->descricao             =$request->descricao;
         $quarto->valor                 =$request->valor;
+        $quarto->status                =0;
         
         $quarto->save();
         return redirect()

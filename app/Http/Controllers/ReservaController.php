@@ -6,9 +6,17 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use App\Reserva;
+use App\Quarto;
+use App\Cliente;
 
 class ReservaController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index() {
         $reserva = Reserva::orderBy('created_at', 'id_cliente')->paginate(10);
         return view('reserva_index', ['reserva' => $reserva]);
@@ -19,8 +27,11 @@ class ReservaController extends Controller
     public function store(ReservaRequest $request){
         $reserva = new Reserva;
 
+        //retorno do formulário estático
         $reserva->id_cliente        = $request->id_cliente;
         $reserva->id_quarto         = $request->id_quarto;
+
+        //último formulário
         $reserva->data_entrada      = $request->data_entrada;
         $reserva->data_saida        = $request->data_saida;
         $reserva->status_pgto       = $request->status_pgto;
@@ -51,5 +62,33 @@ class ReservaController extends Controller
         $reserva = Reserva::findOrFail($id);
         $reserva->delete();
         return redirect()->route('reserva_index')->with('alert-success', 'Reserva deletado com sucesso!');
+    }
+
+    public function reservar(Request $request){
+       // $clientes = Cliente::all();
+        //echo $clientes;
+        $quartos = Quarto::all();
+        //echo $quartos;
+        //return response()->json($clientes);
+        $clientes = $request->id;
+        return view('reservar', [
+            'clientes' => $clientes,
+            'quartos' => $quartos
+            ]);
+    }
+
+    public function finalizar(Request $request){
+         $quartos       = $request->quarto;
+         $clientes      = $request->cliente;
+
+         return view('finalizar', [
+             'clientes' => $clientes,
+             'quartos' => $quartos
+             ]);
+     }
+   // public function quarto
+    public function teste(Request $request){
+        var_dump($request->id);
+        echo $request->id;
     }
 }

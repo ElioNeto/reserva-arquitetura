@@ -22,6 +22,10 @@ Route::group(array('prefix' => 'apiCliente'), function(){
 });
 Route::group(array('prefix'=>'Reserva'), function(){
     Route::get('index', 'ReservaController@index');
+    //Route::get('reservar', 'ReservaController@reservar');
+    Route::post('quarto', 'ReservaController@reservar');
+    Route::post('test', 'ReservaController@teste');
+    Route::post('finalizar', 'ReservaController@finalizar');
 });
 Route::group(array('prefix'=>'Quarto'), function(){
     Route::get('cadastro', 'QuartoController@create');

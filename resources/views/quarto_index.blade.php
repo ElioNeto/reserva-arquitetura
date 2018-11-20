@@ -28,8 +28,11 @@
                         <th scope="row">{{$value->id}}</th>
                         <td>{{$value->descricao}}</td>
                         <td>{{$value->valor}}</td>
-                        <td>{{$value->status}}</td>
+                        @if($value->status=='0')
+                            <td>Livre</td>
+                         @else<td>Ocupado</td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                     </table>
