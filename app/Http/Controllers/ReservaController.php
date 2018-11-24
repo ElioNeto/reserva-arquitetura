@@ -24,20 +24,23 @@ class ReservaController extends Controller
     public function create(){
         return view('reserva.create');
     }
-    public function store(ReservaRequest $request){
+    public function store(Request $request){
         $reserva = new Reserva;
 
         //retorno do formulário estático
-        $reserva->id_cliente        = $request->id_cliente;
-        $reserva->id_quarto         = $request->id_quarto;
+        $reserva->id_cliente        = $request->cliente;
+        $reserva->id_quarto         = $request->quarto;
 
         //último formulário
-        $reserva->data_entrada      = $request->data_entrada;
-        $reserva->data_saida        = $request->data_saida;
-        $reserva->status_pgto       = $request->status_pgto;
+        $reserva->data_entrada      = $request->checkin;
+        $reserva->data_saida        = $request->checkout;
+        $reserva->status_pgto       = 1;
         
         $reserva->save();
-        return redirect()->route('reserva_index')->with('message', 'Reserva cadastrado com sucesso!');
+        
+        return redirect()
+            ->action('ClienteController@index')
+            ->with('msg', 'Reserva efetuada com sucesso!');
     }
     public function show($id){
         //

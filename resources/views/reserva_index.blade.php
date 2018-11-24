@@ -1,16 +1,54 @@
 @extends('layouts.page')
 
 @section('content')
-<div class="col-lg-6">
-    <form action="{{url('/Quarto/busca')}}" method="post">
-        <div class="input-group">
-{{csrf_field()}}
-            <input type="text" class="form-control" name="nome" placeholder="Busca de Cliente">
-            <span class="input-group-btn">
-                <button class="btn btn-default" type="submit">Buscar!</button>
-            </span>
-        </div><!-- /input-group -->
-    </form>
-</div><!-- /.col-lg-6 -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      <div class="panel panel-default">
+        <div class="panel-heading">Reserva de Quarto</div>
+        <div class="panel-body">
+
+        <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">ID_cliente</th>
+                    <th scope="col">ID_quarto</th>
+                    <th scope="col">Checkin</th>
+                    <th scope="col">Checkout</th>
+                    <th scope="col">Pagamento</th>
+                  </tr>
+                </thead>
+                <tbody>
+                @foreach($reserva as $key => $value)
+                  <tr>
+                    @if($value->status=='0')
+                    <th scope="row"><input type="radio" value="{{$value->id}}" name="quarto"></th>
+                    @else
+                    <th scope="row"><input type="radio" value="{{$value->id}}" name="id" disabled></th>
+                    @endif
+                    <td>{{$value->descricao}}</td>
+                    <td>{{$value->valor}}</td>
+                    @if($value->status=='0')
+                      <td>Livre</td>
+                    @else
+                      <td>Ocupado</td>
+                    @endif
+                    @if($value->status=='0')
+                    <td><button class="btn btn-default" type="submit">Prosseguir!</button></td>
+                    @else
+                    <td><button class="btn btn-default" type="submit" disabled>Ocupado!</button></td>
+                    @endif
+                  </tr>
+                  @endforeach
+                </tbody>
+              </table>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection

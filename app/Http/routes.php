@@ -26,6 +26,7 @@ Route::group(array('prefix'=>'Reserva'), function(){
     Route::post('quarto', 'ReservaController@reservar');
     Route::post('test', 'ReservaController@teste');
     Route::post('finalizar', 'ReservaController@finalizar');
+    Route::post('salvar', 'ReservaController@store');
 });
 Route::group(array('prefix'=>'Quarto'), function(){
     Route::get('cadastro', 'QuartoController@create');

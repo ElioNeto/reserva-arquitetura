@@ -65,6 +65,8 @@ class ApiController extends Controller
             //echo $value->nome;
             $nome = $value->nome;
             echo $nome;
+            $cpf = $value->cpf;
+            echo $cpf;
 
             $request->nome                  =$value->nome;
             $request->endereco              =$value->endereco;
@@ -74,6 +76,23 @@ class ApiController extends Controller
             $request->debito                =$value->debito;
 
             $cliente = new Cliente();
+           $api = Cliente::all();
+            foreach($api as $key => $dados){
+                $teste = $dados->cpf;
+                echo $teste;
+
+                if ($cpf == $teste){
+                    echo '<br>estou aqui<br>';
+                    $create = $dados->created_at;
+                    echo"<br>".$create."<br>";
+                    $id = $dados->id;
+                    echo $id;
+                    $search = Cliente::find($id);
+                    $search->delete();
+                }
+                echo '<br><hr>';
+            }
+
             $cliente->nome                  =$request->nome;
             $cliente->endereco              =$request->endereco;
             $cliente->cpf                   =$request->cpf;
@@ -81,11 +100,13 @@ class ApiController extends Controller
             $cliente->data_cancelamento     =$request->data_cancelamento;
             $cliente->debito                =$request->debito;
             $cliente->save();
+            $id = $cliente->id;
+            echo '<br>'.$id.'<br>';
         }
        //$st->status = true;
         $st= 'Import realizado com sucesso!';
         return redirect()
-            ->action('ClienteController@index')
-            ->with('msg', $st);
+          ->action('ClienteController@index')
+          ->with('msg', $st);
     }
 }
