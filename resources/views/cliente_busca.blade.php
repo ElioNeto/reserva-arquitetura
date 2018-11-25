@@ -12,4 +12,12 @@
         </div><!-- /input-group -->
     </form>
 </div><!-- /.col-lg-6 -->
+<br>
+@if(session()->has('msg'))
+<div
+  id="st"
+  class="alert alert-sucess">
+  <p>{{session('msg')}}</p>
+</div>
+@endif
 @endsection

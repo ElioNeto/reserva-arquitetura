@@ -11,5 +11,13 @@
         </div><!-- /input-group -->
     </form>
 </div><!-- /.col-lg-6 -->
+<br>
+<?php if(session()->has('msg')): ?>
+<div
+  id="st"
+  class="alert alert-sucess">
+  <p><?php echo e(session('msg')); ?></p>
+</div>
+<?php endif; ?>
 <?php $__env->stopSection(); ?>
 <?php echo $__env->make('layouts.page', array_except(get_defined_vars(), array('__data', '__path')))->render(); ?>

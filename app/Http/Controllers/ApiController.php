@@ -3,7 +3,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Cliente;
-
 class ApiController extends Controller
 {
     public function __construct()
@@ -29,7 +28,6 @@ class ApiController extends Controller
         $api = new Cliente();
         $api        ->fill($request         ->all());
         $api        ->save();
-
         return response()                   ->json($api, 201);
     }
     public function update(Request $request, $id){
@@ -52,61 +50,101 @@ class ApiController extends Controller
         }
         $api->delete();
     }
-    public function json_manipulate(Request $request){
+    public function json_manipulate(Request $re){
         //Read file
         $jsonString     = file_get_contents(base_path('app/Http/Controllers/json/clientes.json'));
         $data           = json_decode($jsonString);
+        ////////////////////////////////////////////////////////////////////////////////////////
 
-        //echo $data->{'nome'};
-        var_dump($data);
-        //$st = new \StdClass();
-
-        foreach ($data as $key => $value) {
-            //echo $value->nome;
-            $nome = $value->nome;
-            echo $nome;
-            $cpf = $value->cpf;
-            echo $cpf;
-
-            $request->nome                  =$value->nome;
-            $request->endereco              =$value->endereco;
-            $request->cpf                   =$value->cpf;
-            $request->data_cadastro         =$value->data_cadastro;
-            $request->data_cancelamento     =$value->data_cancelamento;
-            $request->debito                =$value->debito;
-
-            $cliente = new Cliente();
-           $api = Cliente::all();
-            foreach($api as $key => $dados){
-                $teste = $dados->cpf;
-                echo $teste;
-
-                if ($cpf == $teste){
-                    echo '<br>estou aqui<br>';
-                    $create = $dados->created_at;
-                    echo"<br>".$create."<br>";
-                    $id = $dados->id;
-                    echo $id;
-                    $search = Cliente::find($id);
-                    $search->delete();
-                }
-                echo '<br><hr>';
-            }
-
-            $cliente->nome                  =$request->nome;
-            $cliente->endereco              =$request->endereco;
-            $cliente->cpf                   =$request->cpf;
-            $cliente->data_cadastro         =$request->data_cadastro;
-            $cliente->data_cancelamento     =$request->data_cancelamento;
-            $cliente->debito                =$request->debito;
-            $cliente->save();
-            $id = $cliente->id;
-            echo '<br>'.$id.'<br>';
+        //Tamanho do banco e arquivo
+        $i = 0;
+        $j = 0;
+        foreach ($data as $key => $value){
+            $i++;
         }
-       //$st->status = true;
+        echo $i;
+        echo '<br>';
+        $b = Cliente::all();
+        foreach ($b as $key => $value){
+            $j++;
+        }
+        echo $j;
+        //////////////////////////////////////////////////////////////////////////////////////
+
+        foreach ($data as $key => $value){
+            $cpf = $value->cpf;
+            $a = 1;
+            //se o banco estiver vazio
+            if( $j == 0){
+                $cliente = new Cliente();
+                $cliente->nome                  =$value->nome;
+                $cliente->endereco              =$value->endereco;
+                $cliente->cpf                   =$value->cpf;
+                $cliente->data_cadastro         =$value->data_cadastro;
+                $cliente->data_cancelamento     =$value->data_cancelamento;
+                $cliente->debito                =$value->debito;
+                $cliente->save();
+            }
+            ////////////////////////////////////////////////////////////////////
+
+            //update de cliente
+            else{
+                foreach ($b as $key => $request){
+                    $ccpf = $request->cpf;
+                    $id = $request->id;
+                
+                    if($ccpf == $cpf){
+                        $a = 0;
+                        $task = Cliente::find($id);
+                        $nome = $value->nome;
+                        $ender = $value->endereco;
+                        $del = $request->deleted_at;
+                        $create = $request->created_at;
+                        echo $create;
+                        $deb = $value->debito;
+                        $array = [
+                            'nome' => $nome, 
+                            'endereco' => $ender, 
+                            'cpf' => $ccpf, 
+                            'data_cadastro' => $create, 
+                            'data_cancelamento' => $del, 
+                            'created_at' => $create, 
+                            'debito' => $deb,
+                        ];
+                        var_dump($array);
+                        $task->update($array);
+                    }
+                    ///////////////////////////////////////////////////////////////////////////
+                    
+                    //Cliente novo - Import
+                    else{
+                        echo '<br>';
+                        echo $a;
+                        echo '<br>';
+                        echo $j;
+                        echo '<br>';
+                        var_dump($value);
+                        if($a == $j){
+                            $cliente = new Cliente();
+                            $cliente->nome                  =$value->nome;
+                            $cliente->endereco              =$value->endereco;
+                            $cliente->cpf                   =$value->cpf;
+                            $cliente->data_cadastro         =$value->data_cadastro;
+                            $cliente->data_cancelamento     =$value->data_cancelamento;
+                            $cliente->debito                =$value->debito;
+                            $cliente->save();
+                        }
+                    ///////////////////////////////////////////////////////////////////////
+                    }
+
+                    $a++;
+                }
+                echo '<hr>';
+            }
+        }     
         $st= 'Import realizado com sucesso!';
         return redirect()
-          ->action('ClienteController@index')
-          ->with('msg', $st);
+            ->action('ClienteController@index')
+            ->with('msg', $st);
     }
 }

@@ -74,10 +74,17 @@ class ReservaController extends Controller
         //echo $quartos;
         //return response()->json($clientes);
         $clientes = $request->id;
-        return view('reservar', [
-            'clientes' => $clientes,
-            'quartos' => $quartos
+        if (!$clientes){
+            return redirect()
+            ->action('ClienteController@form')
+            ->with('msg', 'Cliente não encontrado para reserva, tente novamente!');
+        }else{
+            return view('reservar', [
+                'clientes' => $clientes,
+                'quartos' => $quartos
             ]);
+        }
+        
     }
 
     public function finalizar(Request $request){

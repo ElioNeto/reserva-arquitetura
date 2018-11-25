@@ -23,11 +23,23 @@
                 <tbody>
                 @foreach($clientes as $key => $value)
                   <tr>
+                    @if($value->debito=='0')
                     <th scope="row"><input type="radio" value="{{$value->id}}" name="id"></th>
+                    @else
+                    <th scope="row"><input type="radio" value="{{$value->id}}" name="id" disabled></th>
+                    @endif
                     <td>{{$value->nome}}</td>
                     <td>{{$value->cpf}}</td>
-                    <td>{{$value->debito}}</td>
+                    @if($value->debito == '0')
+                    <td>Cliente Liberado</td>
+                    @else
+                    <td>Cliente com Pendências</td>
+                    @endif
+                    @if($value->debito=='0')
                     <td><button class="btn btn-default" type="submit">Prosseguir!</button></td>
+                    @else
+                    <td><b>Indisponível para reserva</b></td>
+                    @endif
                   </tr>
                   @endforeach
                 </tbody>
@@ -35,7 +47,7 @@
             </div><!-- /input-group -->
           </form>
         </div>
-      </div>
+      </div> 
     </div>
   </div>
 </div>

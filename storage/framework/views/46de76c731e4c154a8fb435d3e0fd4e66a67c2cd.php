@@ -22,11 +22,23 @@
                 <tbody>
                 <?php foreach($clientes as $key => $value): ?>
                   <tr>
+                    <?php if($value->debito=='0'): ?>
                     <th scope="row"><input type="radio" value="<?php echo e($value->id); ?>" name="id"></th>
+                    <?php else: ?>
+                    <th scope="row"><input type="radio" value="<?php echo e($value->id); ?>" name="id" disabled></th>
+                    <?php endif; ?>
                     <td><?php echo e($value->nome); ?></td>
                     <td><?php echo e($value->cpf); ?></td>
-                    <td><?php echo e($value->debito); ?></td>
+                    <?php if($value->debito == '0'): ?>
+                    <td>Cliente Liberado</td>
+                    <?php else: ?>
+                    <td>Cliente com Pendências</td>
+                    <?php endif; ?>
+                    <?php if($value->debito=='0'): ?>
                     <td><button class="btn btn-default" type="submit">Prosseguir!</button></td>
+                    <?php else: ?>
+                    <td><b>Indisponível para reserva</b></td>
+                    <?php endif; ?>
                   </tr>
                   <?php endforeach; ?>
                 </tbody>
@@ -34,7 +46,7 @@
             </div><!-- /input-group -->
           </form>
         </div>
-      </div>
+      </div> 
     </div>
   </div>
 </div>
