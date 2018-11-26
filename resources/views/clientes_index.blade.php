@@ -2,6 +2,14 @@
 
 @section('content')
 
+@if(session()->has('msg'))
+<div class="alert alert-success" role="alert">
+  <p><b>CODE: D102 </b> - Dados dos clientes atualizados com sucesso.</p>
+</div>
+<hr>
+@endif
+
+
 <table class="table table-striped">
   <thead>
     <tr>
@@ -23,12 +31,5 @@
   </tbody>
 </table>
 {{$clientes->links()}}
-<br>
-@if(session()->has('msg'))
-<div
-  id="st"
-  class="alert alert-sucess">
-  <p>{{session('msg')}}</p>
-</div>
-@endif
+
 @endsection
