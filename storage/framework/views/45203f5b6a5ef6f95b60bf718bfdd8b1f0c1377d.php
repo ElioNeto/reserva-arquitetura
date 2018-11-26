@@ -8,11 +8,10 @@
         <div class="panel-body">
 
           <form action="<?php echo e(url('/Reserva/finalizar')); ?>" method="post">
-            <div class="input-group">
             <?php echo e(csrf_field()); ?>
 
-            <input type="radio" value="<?php echo e($clientes); ?>" name="cliente" checked>&nbsp;
-            <label>Cliente OK </label>
+            <input type="hidden" value="<?php echo e($clientes); ?>" name="cliente" checked>&nbsp;
+            <div class="alert alert-info" role="alert"><label>Cliente OK </label></div>
             <hr>
             <h3>Quartos</h3>
             <br>
@@ -49,7 +48,7 @@
                   <?php endforeach; ?>
                 </tbody>
               </table>
-            </div><!-- /input-group -->
+  
           </form>
         </div>
       </div>

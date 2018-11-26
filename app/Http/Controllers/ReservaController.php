@@ -49,6 +49,7 @@ class ReservaController extends Controller
         $reserva = Reserva::findOrFail($id);
         return view('reserva_edicao', compact('reserva'));
     }
+
     public function update(){
         $reserva = Reserva::findOrFail($id);
 
@@ -68,21 +69,36 @@ class ReservaController extends Controller
     }
 
     public function reservar(Request $request){
-       // $clientes = Cliente::all();
-        //echo $clientes;
+       
+        $id = $request->id;
+        $update = date("Y-m-d");
         $quartos = Quarto::all();
-        //echo $quartos;
-        //return response()->json($clientes);
-        $clientes = $request->id;
-        if (!$clientes){
+        $cliente = Cliente::find($id);
+        $data = $cliente->update;
+        $ender = $cliente->endereco;
+        
+        if (!$id){
             return redirect()
             ->action('ClienteController@form')
-            ->with('msg', 'Cliente não encontrado para reserva, tente novamente!');
+            ->with('Er404', 'Er404');//cliente não encontrado
         }else{
-            return view('reservar', [
-                'clientes' => $clientes,
-                'quartos' => $quartos
-            ]);
+            //***************** erros ***************************
+            if($update>$data){
+                return redirect()
+                ->action('ClienteController@form')
+                ->with('Er400', 'Er400');//cliente desatualizado
+            }else{
+                if(!$ender){
+                    return redirect()
+                    ->action('ClienteController@form')
+                    ->with('Er101', 'Er101');//endereço vazio
+                }else{
+                    return view('reservar', [
+                        'clientes' => $id,
+                        'quartos' => $quartos
+                    ]);
+                }
+            }
         }
         
     }

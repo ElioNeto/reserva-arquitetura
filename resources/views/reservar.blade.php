@@ -10,10 +10,9 @@
         <div class="panel-body">
 
           <form action="{{url('/Reserva/finalizar')}}" method="post">
-            <div class="input-group">
             {{csrf_field()}}
-            <input type="radio" value="{{$clientes}}" name="cliente" checked>&nbsp;
-            <label>Cliente OK </label>
+            <input type="hidden" value="{{$clientes}}" name="cliente" checked>&nbsp;
+            <div class="alert alert-info" role="alert"><label>Cliente Selecionado </label></div>
             <hr>
             <h3>Quartos</h3>
             <br>
@@ -50,7 +49,7 @@
                   @endforeach
                 </tbody>
               </table>
-            </div><!-- /input-group -->
+  
           </form>
         </div>
       </div>

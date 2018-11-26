@@ -12,7 +12,8 @@ class Cliente extends Model
         'cpf', 
         'data_cadastro', 
         'data_cancelamento', 
-        'debito'
+        'debito',
+        'update'
     ];
     protected $guarded = [
         'deleted_at',

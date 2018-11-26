@@ -82,6 +82,7 @@ class ApiController extends Controller
                 $cliente->data_cadastro         =$value->data_cadastro;
                 $cliente->data_cancelamento     =$value->data_cancelamento;
                 $cliente->debito                =$value->debito;
+                $cliente->update                =$update = date("Y-m-d");
                 $cliente->save();
             }
             ////////////////////////////////////////////////////////////////////
@@ -100,6 +101,7 @@ class ApiController extends Controller
                         $del = $request->deleted_at;
                         $create = $request->created_at;
                         $deb = $value->debito;
+                        $update = date("Y-m-d");
                         $array = [
                             'nome' => $nome, 
                             'endereco' => $ender, 
@@ -108,6 +110,7 @@ class ApiController extends Controller
                             'data_cancelamento' => $del, 
                             'created_at' => $create, 
                             'debito' => $deb,
+                            'update' => $update,
                         ];
                         $task->update($array);
                     }
@@ -124,6 +127,7 @@ class ApiController extends Controller
                             $cliente->data_cadastro         =$value->data_cadastro;
                             $cliente->data_cancelamento     =$value->data_cancelamento;
                             $cliente->debito                =$value->debito;
+                            $cliente->update                =$update = date("Y-m-d");
                             $cliente->save();
                         }
                     ///////////////////////////////////////////////////////////////////////

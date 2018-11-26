@@ -9,23 +9,22 @@
                     <form class="form-horizontal" role="form" action="<?php echo e(url('/Reserva/salvar')); ?>" method="post"><!--editar-->
                         <?php echo e(csrf_field()); ?>
 
-                        <input type="radio" value="<?php echo e($clientes); ?>" name="cliente" checked>&nbsp;
-                        <label>Cliente Selecionado </label>
-                        <hr>
-                        <input type="radio" value="<?php echo e($quartos); ?>" name="quarto" checked>&nbsp;
-                        <label>Quarto Selecionado</label>
+                        <input type="hidden" value="<?php echo e($clientes); ?>" name="cliente" checked>&nbsp;
+                        <div class="alert alert-info" role="alert"><label>Cliente Selecionado </label></div>
+                        <input type="hidden" value="<?php echo e($quartos); ?>" name="quarto" checked>&nbsp;
+                        <div class="alert alert-info" role="alert"><label>Quarto Selecionado</label></div>
                         <hr>
 
                         <div class="form-group">
                             <label for="in" class="col-md-4 control-label">Data de Entrada</label>
                             <div class="col-md-6">
-                                <input id="in" type="text" class="form-control" name="checkin">
+                                <input id="in" type="text" class="form-control" name="checkin" placeholder="24-04-2018">
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="out" class="col-md-4 control-label">Data de Saída</label>
                             <div class="col-md-6">
-                                <input id="out" type="text" class="form-control" name="checkout">
+                                <input id="out" type="text" class="form-control" name="checkout" placeholder="26-04-2018">
                             </div>
                         </div>
 

@@ -60,13 +60,21 @@ class ClienteController extends Controller
     }
 
     public function busca(Request $request){
-        //var_dump($request->nome);
+        $i=0;
         $cliente = Cliente::where('nome', 'LIKE', '%'.$request->nome.'%')->get();
-
-        return view('cliente_select', [
-            'clientes'  =>      $cliente,
-            'nome'      =>      $request->nome
-        ]);
+        foreach($cliente as $key=>$value){
+            $i++;
+        }
+        if($i==0){
+            return redirect()
+            ->action('ClienteController@form')
+            ->with('Er404', 'Er404');//cliente não encontrado
+        }else{
+            return view('cliente_select', [
+                'clientes'  =>      $cliente,
+                'nome'      =>      $request->nome
+            ]);
+        }
     }
     public function form(){
         return view('cliente_busca');

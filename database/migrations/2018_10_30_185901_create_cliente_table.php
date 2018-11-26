@@ -20,6 +20,7 @@ class CreateClienteTable extends Migration
             $table->string('data_cadastro');//manual
             $table->string('data_cancelamento');//manual
             $table->string('debito');//flag
+            $table->string('update');
             $table->timestamps();//funcao de guardar datas de modificacoes no banco
             $table->softDeletes();//funcao de alterar status de ativo e inativo
         });
