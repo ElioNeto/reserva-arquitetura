@@ -33,6 +33,7 @@
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> Finalizar
                                 </button>
+                                <!-- PayPal Logo --><img  src="https://www.paypal-brasil.com.br/logocenter/util/img/botao-checkout_horizontal_ap.png" border="0" alt="Imagens de solução" /><!-- PayPal Logo -->
                             </div>
                         </div> 
                     </form>

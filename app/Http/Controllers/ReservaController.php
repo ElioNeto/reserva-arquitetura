@@ -107,6 +107,12 @@ class ReservaController extends Controller
          $quartos       = $request->quarto;
          $clientes      = $request->cliente;
 
+         $cliente = Cliente::find($clientes);
+         $array = [
+            'debito' => '1',
+        ];
+        $cliente->update($array);
+
          return view('finalizar', [
              'clientes' => $clientes,
              'quartos' => $quartos

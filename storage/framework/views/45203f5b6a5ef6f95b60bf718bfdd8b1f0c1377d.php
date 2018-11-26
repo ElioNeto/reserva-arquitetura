@@ -11,7 +11,7 @@
             <?php echo e(csrf_field()); ?>
 
             <input type="hidden" value="<?php echo e($clientes); ?>" name="cliente" checked>&nbsp;
-            <div class="alert alert-info" role="alert"><label>Cliente OK </label></div>
+            <div class="alert alert-info" role="alert"><label>Cliente Selecionado </label></div>
             <hr>
             <h3>Quartos</h3>
             <br>

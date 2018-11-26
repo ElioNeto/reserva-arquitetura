@@ -5,7 +5,7 @@
         "cpf":"585.710.020-88",
         "data_cadastro":"",
         "data_cancelamento":"",
-        "debito":"1"
+        "debito":"0"
     },
     {
         "nome":"Marcelo Lucca Raul Cardoso",
@@ -29,7 +29,7 @@
         "cpf":"199.095.739-03",
         "data_cadastro":"2503",
         "data_cancelamento":"2145",
-        "debito":"1"
+        "debito":"0"
     },
     {
         "nome":"Mariane Carla Sarah Lima",
@@ -37,7 +37,7 @@
         "cpf":"575.447.519-53",
         "data_cadastro":"2503",
         "data_cancelamento":"2145",
-        "debito":"1"
+        "debito":"0"
     },
     {
         "nome":"Jennifer Clara Lima",
@@ -45,7 +45,7 @@
         "cpf":"523.849.016-05",
         "data_cadastro":"2503",
         "data_cancelamento":"2145",
-        "debito":"1"
+        "debito":"0"
     },
     {
         "nome":"Fátima Cláudia Ferreira",
@@ -53,7 +53,7 @@
         "cpf":"055.960.784-92",
         "data_cadastro":"2503",
         "data_cancelamento":"2145",
-        "debito":"1"
+        "debito":"0"
     },
     {
         "nome":"Fábio Julio Augusto Bernardes",
@@ -61,7 +61,7 @@
         "cpf":"758.220.415-82",
         "data_cadastro":"",
         "data_cancelamento":"",
-        "debito":"1"
+        "debito":"0"
     },
     {
         "nome":"Alice Patrícia Sara Brito",
@@ -69,6 +69,6 @@
         "cpf":"646.960.195-27",
         "data_cadastro":"2503",
         "data_cancelamento":"2145",
-        "debito":"1"
+        "debito":"0"
     }
 ]
