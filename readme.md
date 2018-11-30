@@ -26,4 +26,6 @@ Na pasta do projeto, no terminal, dê o comando 'php artisan serve'
 
 O servidor iniciará no endereço localhost:8000
 
-Para uma porta específica, dê o comando 'php artisan serve --port<porta>
+Para uma porta específica, dê o comando 'php artisan serve --port=3000'
+
+Iniciando o servidor em localhost:3000
