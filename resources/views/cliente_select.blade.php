@@ -35,16 +35,19 @@
                     @else
                     <td>Cliente com Pendências</td>
                     @endif
-                    @if($value->debito=='0')
-                    <td><button class="btn btn-default" type="submit">Prosseguir!</button></td>
-                    @else
-                    <td><b>Indisponível para reserva</b></td>
-                    @endif
                   </tr>
                   @endforeach
                 </tbody>
               </table>
             </div><!-- /input-group -->
+
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-primary">
+                  <i class="fa fa-btn fa-user"></i> Prosseguir
+                </button>
+              </div>
+            </div> 
           </form>
         </div>
       </div> 

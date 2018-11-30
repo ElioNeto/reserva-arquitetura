@@ -13,27 +13,18 @@
                         <div class="alert alert-info" role="alert"><label>Cliente Selecionado </label></div>
                         <input type="hidden" value="<?php echo e($quartos); ?>" name="quarto" checked>&nbsp;
                         <div class="alert alert-info" role="alert"><label>Quarto Selecionado</label></div>
-                        <hr>
-
-                        <div class="form-group">
-                            <label for="in" class="col-md-4 control-label">Data de Entrada</label>
-                            <div class="col-md-6">
-                                <input id="in" type="text" class="form-control" name="checkin" placeholder="24-04-2018">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="out" class="col-md-4 control-label">Data de Saída</label>
-                            <div class="col-md-6">
-                                <input id="out" type="text" class="form-control" name="checkout" placeholder="26-04-2018">
-                            </div>
-                        </div>
+                        <input type="hidden" value="<?php echo e($checkin); ?>" name="checkin" checked>&nbsp;
+                        <div class="alert alert-info" role="alert"><label>Checkin: <?php echo e($checkin); ?></label></div>
+                        <input type="hidden" value="<?php echo e($checkout); ?>" name="checkout" checked>&nbsp;
+                        <div class="alert alert-info" role="alert"><label>Checkout: <?php echo e($checkout); ?></label></div>
+                        <input type="hidden" value="<?php echo e($dias); ?>" name="dias" checked>&nbsp;
+                        <div class="alert alert-info" role="alert"><label>Dias reservados: <?php echo e($dias); ?></label></div>
 
                         <div class="form-group">
                             <div class="col-md-6 col-md-offset-4">
                                 <button type="submit" class="btn btn-primary">
                                     <i class="fa fa-btn fa-user"></i> Finalizar
                                 </button>
-                                <!-- PayPal Logo --><img  src="https://www.paypal-brasil.com.br/logocenter/util/img/botao-checkout_horizontal_ap.png" border="0" alt="Imagens de solução" /><!-- PayPal Logo -->
                             </div>
                         </div> 
                     </form>

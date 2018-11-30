@@ -9,8 +9,9 @@
         <div class="panel-heading">Reserva de Quarto</div>
         <div class="panel-body">
 
-          <form action="{{url('/Reserva/finalizar')}}" method="post">
+          <form action="{{url('/Reserva/pacote')}}" method="post">
             {{csrf_field()}}
+           
             <input type="hidden" value="{{$clientes}}" name="cliente" checked>&nbsp;
             <div class="alert alert-info" role="alert"><label>Cliente Selecionado </label></div>
             <hr>
@@ -40,16 +41,29 @@
                     @else
                       <td>Ocupado</td>
                     @endif
-                    @if($value->status=='0')
-                    <td><button class="btn btn-default" type="submit">Prosseguir!</button></td>
-                    @else
-                    <td><button class="btn btn-default" type="submit" disabled>Ocupado!</button></td>
-                    @endif
                   </tr>
                   @endforeach
                 </tbody>
               </table>
-  
+              <div class="form-group">
+                <label for="in" class="col-md-4 control-label">Data de Entrada</label>
+                <div class="col-md-6">
+                    <input id="in" type="text" class="form-control" name="checkin" placeholder="2018-01-30">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="out" class="col-md-4 control-label">Data de Saída</label>
+                <div class="col-md-6">
+                    <input id="out" type="text" class="form-control" name="checkout" placeholder="2018-02-10">
+                </div>
+            </div>
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-info">
+                  <i class="fa fa-btn fa-user"></i> Prosseguir
+                </button>
+              </div>
+          </div> 
           </form>
         </div>
       </div>

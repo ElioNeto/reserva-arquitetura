@@ -3,8 +3,8 @@
         "nome":"Vicente Davi Souza",
         "endereco":"Avenida A. J. Renner 209",
         "cpf":"585.710.020-88",
-        "data_cadastro":"",
-        "data_cancelamento":"",
+        "data_cadastro":"0",
+        "data_cancelamento":"0",
         "debito":"0"
     },
     {
@@ -44,7 +44,7 @@
         "endereco":"Rua Américo Vespúcio",
         "cpf":"523.849.016-05",
         "data_cadastro":"2503",
-        "data_cancelamento":"2145",
+        "data_cancelamento":"0",
         "debito":"0"
     },
     {
@@ -52,15 +52,15 @@
         "endereco":"Rua Amaral Neto",
         "cpf":"055.960.784-92",
         "data_cadastro":"2503",
-        "data_cancelamento":"2145",
+        "data_cancelamento":"0",
         "debito":"0"
     },
     {
         "nome":"Fábio Julio Augusto Bernardes",
         "endereco":"Rua Miguel Ângelo Gimenez",
         "cpf":"758.220.415-82",
-        "data_cadastro":"",
-        "data_cancelamento":"",
+        "data_cadastro":"0",
+        "data_cancelamento":"0",
         "debito":"0"
     },
     {

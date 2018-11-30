@@ -39,6 +39,13 @@
                 Endereço não preenchido!
                 </div>
                 @endif
+
+                @if(session()->has('Er201'))
+                <div class="alert alert-danger" role="alert">
+                <b>CODE: {{session('Er201')}}</b>
+                Datas indisponíveis para o quarto!
+                </div>
+                @endif
                 
                 </div>
             </div>

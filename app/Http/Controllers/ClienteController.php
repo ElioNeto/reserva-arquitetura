@@ -70,9 +70,11 @@ class ClienteController extends Controller
             ->action('ClienteController@form')
             ->with('Er404', 'Er404');//cliente não encontrado
         }else{
+            $Er201 = 0;
             return view('cliente_select', [
                 'clientes'  =>      $cliente,
-                'nome'      =>      $request->nome
+                'nome'      =>      $request->nome,
+                'Er201'     =>      $Er201,
             ]);
         }
     }

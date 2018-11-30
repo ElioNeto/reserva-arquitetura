@@ -7,6 +7,13 @@
 <hr>
 <?php endif; ?>
 
+<?php if(session()->has('D301')): ?>
+<div class="alert alert-success" role="alert">
+  <p><b>CODE: <?php echo e(session('D301')); ?>< </b> - Reserva efetuada com sucesso!</p>
+</div>
+<hr>
+<?php endif; ?>
+
 
 <table class="table table-striped">
   <thead>

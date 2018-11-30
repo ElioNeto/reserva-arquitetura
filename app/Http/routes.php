@@ -25,7 +25,7 @@ Route::group(array('prefix'=>'Reserva'), function(){
     //Route::get('reservar', 'ReservaController@reservar');
     Route::post('quarto', 'ReservaController@reservar');
     Route::post('test', 'ReservaController@teste');
-    Route::post('finalizar', 'ReservaController@finalizar');
+    Route::post('pacote', 'ReservaController@pacote');
     Route::post('salvar', 'ReservaController@store');
 });
 Route::group(array('prefix'=>'Quarto'), function(){

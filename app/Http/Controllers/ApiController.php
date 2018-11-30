@@ -99,6 +99,9 @@ class ApiController extends Controller
                         $nome = $value->nome;
                         $ender = $value->endereco;
                         $del = $request->deleted_at;
+                        if(!$del){
+                            $del = $value->data_cancelamento;
+                        }
                         $create = $request->created_at;
                         $deb = $value->debito;
                         $update = date("Y-m-d");

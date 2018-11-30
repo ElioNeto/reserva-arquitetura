@@ -40,7 +40,7 @@ class ReservaController extends Controller
         
         return redirect()
             ->action('ClienteController@index')
-            ->with('msg', 'Reserva efetuada com sucesso!');
+            ->with('D301', 'D301');
     }
     public function show($id){
         //
@@ -71,17 +71,16 @@ class ReservaController extends Controller
     public function reservar(Request $request){
        
         $id = $request->id;
-        $update = date("Y-m-d");
-        $quartos = Quarto::all();
-        $cliente = Cliente::find($id);
-        $data = $cliente->update;
-        $ender = $cliente->endereco;
-        
         if (!$id){
             return redirect()
             ->action('ClienteController@form')
             ->with('Er404', 'Er404');//cliente não encontrado
         }else{
+            $update = date("Y-m-d");
+            $quartos = Quarto::all();
+            $cliente = Cliente::find($id);
+            $data = $cliente->update;
+            $ender = $cliente->endereco;
             //***************** erros ***************************
             if($update>$data){
                 return redirect()
@@ -103,21 +102,138 @@ class ReservaController extends Controller
         
     }
 
-    public function finalizar(Request $request){
-         $quartos       = $request->quarto;
-         $clientes      = $request->cliente;
+    public function pacote(Request $request){
+        $quartos       = $request->quarto;
+        $clientes      = $request->cliente;
 
-         $cliente = Cliente::find($clientes);
-         $array = [
-            'debito' => '1',
-        ];
+        $a = 0;
+
+        $cliente = Cliente::find($clientes);
+        $quarto = Reserva::where('id_quarto', $quartos)->get();
+        $q = Quarto::all();
+
+        foreach ($quarto as $key => $quarto){
+            $a++;
+        }
+        
+            $array = [
+                'debito' => '1',
+            ];
+            #- Contagem de dias -#
+            $Texto =  $request->checkin;
+            $Texto2 = $request->checkout;
+            $I = 0;
+            $Array = 0;
+            for ($X = 0; $X < strlen($Texto); $X++) {
+                if($Texto[$I] == '-'){
+                    $Texto[$X] = 0;
+                    $I++;
+                }else{
+                    $Texto[$X] = $Texto[$I];
+                    $I++;
+                }
+            }
+            $I = 0;
+            
+            for ($X = 0; $X < strlen($Texto2); $X++) {
+                if($Texto2[$I] == '-'){
+                    $Texto2[$X] = 0;
+                    $I++;
+                }else{
+                    $Texto2[$X] = $Texto2[$I];
+                    $I++;
+                }
+            }
+            $n3 = $Texto2 - $Texto;
+    #-----------------------------------------------------------------------------------#
+    if(!$quartos){ // Quarto não informado
+        return redirect()
+        ->action('ClienteController@form')
+        ->with('Er201', 'Er201');
+        
+    }
+    
+    if ($a == 0){ // nenhum quarto na data
         $cliente->update($array);
+        
+            return view('finalizar', [
+                'clientes' => $clientes,
+                'quartos' => $quartos,
+                'checkin' => $Texto,
+                'checkout' => $Texto2,
+                'dias' => $n3,
+                ]); 
+        }else{
+            $dia_in = $quarto->data_entrada;
+            $dia_out = $quarto->data_saida;
+            $res = $dia_out - $dia_in;
+            
 
-         return view('finalizar', [
-             'clientes' => $clientes,
-             'quartos' => $quartos
-             ]);
-     }
+           if($dia_in<=$Texto){
+               
+                if($dia_out>=$Texto){ 
+                    //data reservada para o quarto
+                        return redirect()
+                    ->action('ClienteController@form')
+                    ->with('Er201', 'Er201');
+                }   
+                if($dia_out<$Texto){
+                    $cliente->update($array);
+                    return view('finalizar', [
+                        'clientes' => $clientes,
+                        'quartos' => $quartos,
+                        'checkin' => $Texto,
+                        'checkout' => $Texto2,
+                        'dias' => $n3,
+                    ]); 
+                }
+            }else{
+                if($dia_in>=$Texto){
+                    if($dia_out<$Texto2){
+                        return redirect()
+                            ->action('ClienteController@form')
+                            ->with('Er201', 'Er201');
+                    }else{
+                        return view('finalizar', [
+                            'clientes' => $clientes,
+                            'quartos' => $quartos,
+                            'checkin' => $Texto,
+                            'checkout' => $Texto2,
+                            'dias' => $n3,
+                        ]); 
+                    }
+                }
+                
+                if($dia_in<=$Texto2){
+                    
+                    if($dia_out>=$Texto2){//data reservada para o quarto
+                        return redirect()
+                        ->action('ClienteController@form')
+                        ->with('Er201', 'Er201');
+                    }if($dia_out<$Texto2){
+                        $cliente->update($array);
+                        return view('finalizar', [
+                            'clientes' => $clientes,
+                            'quartos' => $quartos,
+                            'checkin' => $Texto,
+                            'checkout' => $Texto2,
+                            'dias' => $n3,
+                            ]); 
+                    }
+                }
+                $cliente->update($array);
+                        return view('finalizar', [
+                            'clientes' => $clientes,
+                            'quartos' => $quartos,
+                            'checkin' => $Texto,
+                            'checkout' => $Texto2,
+                            'dias' => $n3,
+                            ]); 
+            }
+        }
+
+    }
+         
    // public function quarto
     public function teste(Request $request){
         var_dump($request->id);
