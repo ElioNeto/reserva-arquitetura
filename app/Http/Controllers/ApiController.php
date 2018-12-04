@@ -52,7 +52,7 @@ class ApiController extends Controller
     }
     public function json_manipulate(Request $re){
         //Read file
-        $jsonString     = file_get_contents(base_path('app/Http/Controllers/json/clientes.json'));
+        $jsonString     = file_get_contents(base_path('app/Http/Controllers/api/clientes.json'));
         $data           = json_decode($jsonString);
         ////////////////////////////////////////////////////////////////////////////////////////
         echo 'Importando dados ...';

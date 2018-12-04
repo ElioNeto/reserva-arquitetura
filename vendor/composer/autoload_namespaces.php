@@ -7,8 +7,15 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Prophecy\\' => array($vendorDir . '/phpspec/prophecy/src'),
+    'PhpOption\\' => array($vendorDir . '/phpoption/phpoption/src'),
+    'PhpCollection' => array($vendorDir . '/phpcollection/phpcollection/src'),
     'Mockery' => array($vendorDir . '/mockery/mockery/library'),
+    'Metadata\\' => array($vendorDir . '/jms/metadata/src'),
     'JakubOnderka\\PhpConsoleHighlighter' => array($vendorDir . '/jakub-onderka/php-console-highlighter/src'),
+    'JMS\\Serializer' => array($vendorDir . '/jms/serializer/src'),
+    'JMS\\' => array($vendorDir . '/jms/parser-lib/src'),
+    'Doctrine\\Common\\Lexer\\' => array($vendorDir . '/doctrine/lexer/lib'),
     'Doctrine\\Common\\Inflector\\' => array($vendorDir . '/doctrine/inflector/lib'),
+    'Doctrine\\Common\\Collections\\' => array($vendorDir . '/doctrine/collections/lib'),
     'Barryvdh' => array($vendorDir . '/barryvdh/reflection-docblock/src'),
 );

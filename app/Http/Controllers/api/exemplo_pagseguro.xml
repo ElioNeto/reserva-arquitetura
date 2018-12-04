@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="ISO-8859-1" standalone="yes"?>  
+<checkout>  
+    <currency>BRL</currency>  
+    <items>  
+        <item>  
+            <id>0001</id>  
+            <description>Notebook Prata</description>  
+            <amount>24300.00</amount>  
+            <quantity>1</quantity>    
+        </item>  
+        <item>  
+            <id>0002</id>  
+            <description>Notebook Rosa</description>  
+            <amount>25600.00</amount>  
+            <quantity>2</quantity>  
+        </item>  
+    </items>  
+    <reference>REF1234</reference>  
+    <sender>  
+        <name>José Comprador</name>  
+        <documents>
+            <document>
+                <type>CPF</type>
+                <value>02729522069</value>
+            </document>
+        </documents>
+    </sender>
+</checkout>  
