@@ -10,7 +10,8 @@
         "laravelcollective/html": "^5.2.0",
         "barryvdh/laravel-ide-helper": "^2.4",
         "pagseguro/pagseguro-php-sdk": "^5.0",
-        "phpsc/pagseguro": "^1.0"
+        "phpsc/pagseguro": "^1.0",
+        "nesbot/carbon": "^1.36"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

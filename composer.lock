@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "62c5f75d9e0a4981a5da00163ec74640",
+    "content-hash": "fe3f6fd59ec83dfbcd64a0fdf81f1515",
     "packages": [
         {
             "name": "barryvdh/laravel-ide-helper",
@@ -643,16 +643,16 @@
         },
         {
             "name": "guzzlehttp/psr7",
-            "version": "1.5.0",
+            "version": "1.5.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/guzzle/psr7.git",
-                "reference": "53662d6688033a5eccde987bdd5a4a98ebe2d952"
+                "reference": "9b809aa5fcc7c6bddf35bea6cec77e86b8485a5c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/guzzle/psr7/zipball/53662d6688033a5eccde987bdd5a4a98ebe2d952",
-                "reference": "53662d6688033a5eccde987bdd5a4a98ebe2d952",
+                "url": "https://api.github.com/repos/guzzle/psr7/zipball/9b809aa5fcc7c6bddf35bea6cec77e86b8485a5c",
+                "reference": "9b809aa5fcc7c6bddf35bea6cec77e86b8485a5c",
                 "shasum": ""
             },
             "require": {
@@ -706,7 +706,7 @@
                 "uri",
                 "url"
             ],
-            "time": "2018-12-03T05:07:51+00:00"
+            "time": "2018-12-04T18:48:06+00:00"
         },
         {
             "name": "jakub-onderka/php-console-color",

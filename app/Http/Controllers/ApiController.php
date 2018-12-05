@@ -1,55 +1,24 @@
 <?php
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use PHPSC\PagSeguro\Credentials;
+use PHPSC\PagSeguro\Environments\Sandbox;
+use PHPSC\PagSeguro\Customer\Customer;
+use PHPSC\PagSeguro\Items\Item;
+use PHPSC\PagSeguro\Requests\Checkout\CheckoutService;
+use Carbon\Carbon;
 use App\Cliente;
-class ApiController extends Controller
-{
-    public function __construct()
-    {
+use App\Reserva;
+use App\Quarto;
+
+class ApiController extends Controller{
+
+    public function __construct(){
         $this->middleware('auth');
     }
     
-    public function index(){
-        $api = Cliente::all();
-        return response()                   ->json($api);
-       // return view('api', ['api' => $api]);
-    }
-    public function show($id){
-        $api = Cliente::find($id);
-        if(!$api){
-            return response()               ->json([
-                'message'                   =>'Nada encontrado', 
-            ], 404);
-        }
-        return response()                   ->json($api);
-    }
-    public function store(Request $request){
-        $api = new Cliente();
-        $api        ->fill($request         ->all());
-        $api        ->save();
-        return response()                   ->json($api, 201);
-    }
-    public function update(Request $request, $id){
-        $api = Cliente::find($id);
-        if(!$api){
-            return response()               ->json([
-                'message'                   =>'Nada encontrado',
-            ],404);
-        }
-        $api        ->fill($request         ->all());
-        $api        -save();
-        return response()                   ->json($api);
-    }
-    public function destroy($id){
-        $api = Cliente::find($id);
-        if(!$api){
-            return response()->json([
-                'message' => 'Nada encontrado',
-            ],404);
-        }
-        $api->delete();
-    }
     public function json_manipulate(Request $re){
         //Read file
         $jsonString     = file_get_contents(base_path('app/Http/Controllers/api/clientes.json'));
@@ -143,5 +112,62 @@ class ApiController extends Controller
         return redirect()
             ->action('ClienteController@index')
             ->with('msg', ' ');
+    }
+
+    public function busca(){
+        return view('api.busca');
+    }
+
+    public function select(Request $request){
+        $i=0;
+        $cliente = Cliente::where([
+            ['nome', 'LIKE', '%'.$request->nome.'%'],
+            ['debito', '<>', 0] 
+        ])->get();
+        foreach($cliente as $key=>$value){
+            $i++;
+        }
+        if($i==0){
+            return redirect()
+            ->action('ApiController@busca')
+            ->with('Er404', 'Er404');//cliente não encontrado
+        }else{
+            $Er201 = 0;
+            return view('api.select', [
+                'clientes'  =>      $cliente,
+                'nome'      =>      $request->nome,
+                'Er201'     =>      $Er201,
+            ]);
+        }
+    }
+
+    public function checkout (Request $request){
+        $id = $request->id;
+        //echo $id;
+        $res = Reserva::where([
+            ['id_cliente', $id],
+            ['status_pgto', '<>', 0]
+        ])->get();
+
+        $reserva = new Reserva();
+        foreach ($res as $key => $value) {
+            $reserva->id = $value->id;
+            $reserva->id_quarto = $value->id_quarto;
+            $reserva->id_cliente = $value->id_cliente;
+            $date1 = Carbon::createFromFormat('Y-m-d H:i:s', $value->data_entrada);
+            $date2 = Carbon::createFromFormat('Y-m-d H:i:s', $value->data_saida);
+            $dias = $date2->diffInDays($date1);
+        }  
+        $id_q = $reserva->id_quarto;
+        $cliente = Cliente::find($id);
+        $quarto = Quarto::find($id_q);
+
+        return view('api.confirmacao', [
+            'cliente'       =>      $cliente,
+            'reserva'       =>      $reserva,
+            'quarto'        =>      $quarto,
+            'dias'          =>      $dias,
+        ]);
+
     }
 }

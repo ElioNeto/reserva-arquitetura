@@ -56,7 +56,8 @@
                         </a>
                         <ul class="dropdown-menu" role="menu">
                             <li><a href="{{ url('/Cliente/lista') }}">Listar</a></li>
-                            <li><a href="{{ url('/apiCliente/test') }}">Importar json</a></li>
+                            <li><a href="{{ url('/apiCliente/test') }}">Integração</a></li>
+                            <li><a href="{{ url('/apiCliente/busca') }}">Pagamento</a></li>
                         </ul>
                     </li>
                     <li class="dropdown">

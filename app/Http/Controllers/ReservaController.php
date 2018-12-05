@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use Carbon\Carbon;
 use App\Http\Requests;
 use App\Reserva;
 use App\Quarto;
@@ -12,17 +12,13 @@ use App\Cliente;
 class ReservaController extends Controller
 {
 
-    public function __construct()
-    {
+    public function __construct(){
         $this->middleware('auth');
     }
 
     public function index() {
         $reserva = Reserva::orderBy('created_at', 'id_cliente')->paginate(10);
-        return view('reserva_index', ['reserva' => $reserva]);
-    }
-    public function create(){
-        return view('reserva.create');
+        return view('reserva.index', ['reserva' => $reserva]);
     }
     public function store(Request $request){
         $reserva = new Reserva;
@@ -42,14 +38,10 @@ class ReservaController extends Controller
             ->action('ClienteController@index')
             ->with('D301', 'D301');
     }
-    public function show($id){
-        //
-    }
     public function edit($id){
         $reserva = Reserva::findOrFail($id);
-        return view('reserva_edicao', compact('reserva'));
+        return view('reserva.edicao', compact('reserva'));
     }
-
     public function update(){
         $reserva = Reserva::findOrFail($id);
 
@@ -60,14 +52,13 @@ class ReservaController extends Controller
         $reserva->status_pgto       = $request->status_pgto;
 
         $reserva->save();
-        return redirect()->route('reserva_index')->with('message', 'Reserva atualizado com sucesso!');
+        return redirect()->route('reserva.index')->with('message', 'Reserva atualizado com sucesso!');
     }
     public function destroy($id){
         $reserva = Reserva::findOrFail($id);
         $reserva->delete();
-        return redirect()->route('reserva_index')->with('alert-success', 'Reserva deletado com sucesso!');
+        return redirect()->route('reserva.index')->with('alert-success', 'Reserva deletado com sucesso!');
     }
-
     public function reservar(Request $request){
        
         $id = $request->id;
@@ -92,7 +83,7 @@ class ReservaController extends Controller
                     ->action('ClienteController@form')
                     ->with('Er101', 'Er101');//endereço vazio
                 }else{
-                    return view('reservar', [
+                    return view('reserva.reservar', [
                         'clientes' => $id,
                         'quartos' => $quartos
                     ]);
@@ -120,31 +111,11 @@ class ReservaController extends Controller
                 'debito' => '1',
             ];
             #- Contagem de dias -#
-            $Texto =  $request->checkin;
-            $Texto2 = $request->checkout;
-            $I = 0;
-            $Array = 0;
-            for ($X = 0; $X < strlen($Texto); $X++) {
-                if($Texto[$I] == '-'){
-                    $Texto[$X] = 0;
-                    $I++;
-                }else{
-                    $Texto[$X] = $Texto[$I];
-                    $I++;
-                }
-            }
-            $I = 0;
-            
-            for ($X = 0; $X < strlen($Texto2); $X++) {
-                if($Texto2[$I] == '-'){
-                    $Texto2[$X] = 0;
-                    $I++;
-                }else{
-                    $Texto2[$X] = $Texto2[$I];
-                    $I++;
-                }
-            }
-            $n3 = $Texto2 - $Texto;
+            $date1 = Carbon::createFromFormat('Y-m-d', $request->checkin);
+            $date2 = Carbon::createFromFormat('Y-m-d', $request->checkout);
+            $dias = $date2->diffInDays($date1);
+            //echo $value;
+            //exit();
     #-----------------------------------------------------------------------------------#
     if(!$quartos){ // Quarto não informado
         return redirect()
@@ -156,12 +127,12 @@ class ReservaController extends Controller
     if ($a == 0){ // nenhum quarto na data
         $cliente->update($array);
         
-            return view('finalizar', [
+            return view('reserva.finalizar', [
                 'clientes' => $clientes,
                 'quartos' => $quartos,
-                'checkin' => $Texto,
-                'checkout' => $Texto2,
-                'dias' => $n3,
+                'checkin' => $date1,
+                'checkout' => $date2,
+                'dias' => $dias,
                 ]); 
         }else{
             $dia_in = $quarto->data_entrada;
@@ -179,7 +150,7 @@ class ReservaController extends Controller
                 }   
                 if($dia_out<$Texto){
                     $cliente->update($array);
-                    return view('finalizar', [
+                    return view('reserva.finalizar', [
                         'clientes' => $clientes,
                         'quartos' => $quartos,
                         'checkin' => $Texto,
@@ -194,7 +165,7 @@ class ReservaController extends Controller
                             ->action('ClienteController@form')
                             ->with('Er201', 'Er201');
                     }else{
-                        return view('finalizar', [
+                        return view('reserva.finalizar', [
                             'clientes' => $clientes,
                             'quartos' => $quartos,
                             'checkin' => $Texto,
@@ -212,7 +183,7 @@ class ReservaController extends Controller
                         ->with('Er201', 'Er201');
                     }if($dia_out<$Texto2){
                         $cliente->update($array);
-                        return view('finalizar', [
+                        return view('reserva.finalizar', [
                             'clientes' => $clientes,
                             'quartos' => $quartos,
                             'checkin' => $Texto,
@@ -222,7 +193,7 @@ class ReservaController extends Controller
                     }
                 }
                 $cliente->update($array);
-                        return view('finalizar', [
+                        return view('reserva.finalizar', [
                             'clientes' => $clientes,
                             'quartos' => $quartos,
                             'checkin' => $Texto,
@@ -232,11 +203,5 @@ class ReservaController extends Controller
             }
         }
 
-    }
-         
-   // public function quarto
-    public function teste(Request $request){
-        var_dump($request->id);
-        echo $request->id;
     }
 }
