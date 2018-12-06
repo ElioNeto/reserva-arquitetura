@@ -200,7 +200,8 @@ class ApiController extends Controller{
         $itemAmount = $request->valor . '.00';
         $id = $request->id;
         
-        $data['token'] =   'FA5AD922C90243D3B03FAC6602798DC3';
+        //$data['token'] =   'FA5AD922C90243D3B03FAC6602798DC3';
+        $data['token'] = 'D3C5AC4D08154287AD56EDFE29036D31';
         $data['email'] = $email;
         $data['currency'] = $currency;
         $data['itemId1'] = $itemId;
@@ -210,7 +211,7 @@ class ApiController extends Controller{
 
         $charset = 'ISO-8859-1';
 
-        $url = 'https://ws.pagseguro.uol.com.br/v2/checkout';
+        $url = 'https://ws.sandbox.pagseguro.uol.com.br/v2/checkout';
 
         $data = http_build_query($data);
        // echo $data;
@@ -230,7 +231,7 @@ class ApiController extends Controller{
         echo $xml -> code;
         $code = $xml->code;
        // exit;
-        $url2 = 'https://pagseguro.uol.com.br/checkout/v2/payment.html?code=' . $code;
+        $url2 = 'https://sandbox.pagseguro.uol.com.br/checkout/v2/payment.html?code=' . $code;
         
         $task = Cliente::find($id);
         foreach ($task as $key => $value) {

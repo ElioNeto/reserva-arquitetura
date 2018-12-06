@@ -7,14 +7,6 @@
       <div class="panel panel-default">
         <div class="panel-heading">Resultado da busca</div>
         <div class="panel-body">
-
-        @if(session()->has('Er202'))
-        <div class="alert alert-danger" role="alert">
-        <b>CODE: {{session('Er202')}}</b>
-        Reserva não encontrada!
-        </div>
-        @endif
-
           <form action="{{url('/apiCliente/checkout')}}" method="post">
             <div class="input-group">
             {{csrf_field()}}

@@ -5,14 +5,6 @@
       <div class="panel panel-default">
         <div class="panel-heading">Resultado da busca</div>
         <div class="panel-body">
-
-        <?php if(session()->has('Er202')): ?>
-        <div class="alert alert-danger" role="alert">
-        <b>CODE: <?php echo e(session('Er202')); ?></b>
-        Reserva não encontrada!
-        </div>
-        <?php endif; ?>
-
           <form action="<?php echo e(url('/apiCliente/checkout')); ?>" method="post">
             <div class="input-group">
             <?php echo e(csrf_field()); ?>
