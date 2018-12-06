@@ -28,6 +28,7 @@
     24 => 'App\\Providers\\RouteServiceProvider',
     25 => 'Collective\\Html\\HtmlServiceProvider',
     26 => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
+    27 => 'laravel\\pagseguro\\Platform\\Laravel5\\ServiceProvider',
   ),
   'eager' => 
   array (
@@ -136,6 +137,7 @@
     'Collective\\Html\\FormBuilder' => 'Collective\\Html\\HtmlServiceProvider',
     'command.ide-helper.generate' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
     'command.ide-helper.models' => 'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider',
+    'pagseguro' => 'laravel\\pagseguro\\Platform\\Laravel5\\ServiceProvider',
   ),
   'when' => 
   array (
@@ -179,6 +181,9 @@
     array (
     ),
     'Barryvdh\\LaravelIdeHelper\\IdeHelperServiceProvider' => 
+    array (
+    ),
+    'laravel\\pagseguro\\Platform\\Laravel5\\ServiceProvider' => 
     array (
     ),
   ),

@@ -140,27 +140,27 @@ class ReservaController extends Controller
             $res = $dia_out - $dia_in;
             
 
-           if($dia_in<=$Texto){
+           if($dia_in<=$date1){
                
-                if($dia_out>=$Texto){ 
+                if($dia_out>=$date1){ 
                     //data reservada para o quarto
                         return redirect()
                     ->action('ClienteController@form')
                     ->with('Er201', 'Er201');
                 }   
-                if($dia_out<$Texto){
+                if($dia_out<$date1){
                     $cliente->update($array);
                     return view('reserva.finalizar', [
                         'clientes' => $clientes,
                         'quartos' => $quartos,
-                        'checkin' => $Texto,
-                        'checkout' => $Texto2,
-                        'dias' => $n3,
+                        'checkin' => $date1,
+                        'checkout' => $date2,
+                        'dias' => $dias,
                     ]); 
                 }
             }else{
-                if($dia_in>=$Texto){
-                    if($dia_out<$Texto2){
+                if($dia_in>=$date1){
+                    if($dia_out<$date2){
                         return redirect()
                             ->action('ClienteController@form')
                             ->with('Er201', 'Er201');
@@ -168,27 +168,27 @@ class ReservaController extends Controller
                         return view('reserva.finalizar', [
                             'clientes' => $clientes,
                             'quartos' => $quartos,
-                            'checkin' => $Texto,
-                            'checkout' => $Texto2,
-                            'dias' => $n3,
+                            'checkin' => $date1,
+                            'checkout' => $date2,
+                            'dias' => $dias,
                         ]); 
                     }
                 }
                 
-                if($dia_in<=$Texto2){
+                if($dia_in<=$date12){
                     
-                    if($dia_out>=$Texto2){//data reservada para o quarto
+                    if($dia_out>=$date12){//data reservada para o quarto
                         return redirect()
                         ->action('ClienteController@form')
                         ->with('Er201', 'Er201');
-                    }if($dia_out<$Texto2){
+                    }if($dia_out<$date2){
                         $cliente->update($array);
                         return view('reserva.finalizar', [
                             'clientes' => $clientes,
                             'quartos' => $quartos,
-                            'checkin' => $Texto,
-                            'checkout' => $Texto2,
-                            'dias' => $n3,
+                            'checkin' => $date1,
+                            'checkout' => $date2,
+                            'dias' => $dias,
                             ]); 
                     }
                 }
@@ -196,9 +196,9 @@ class ReservaController extends Controller
                         return view('reserva.finalizar', [
                             'clientes' => $clientes,
                             'quartos' => $quartos,
-                            'checkin' => $Texto,
-                            'checkout' => $Texto2,
-                            'dias' => $n3,
+                            'checkin' => $date1,
+                            'checkout' => $date2,
+                            'dias' => $dias,
                             ]); 
             }
         }

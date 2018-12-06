@@ -1,0 +1,4 @@
+
+06/12/2018 14:30:04 PagSeguro.Session[info]: Begin
+06/12/2018 14:30:04 PagSeguro.Session[info]: POST: https://ws.sandbox.pagseguro.uol.com.br/v2/sessions?email=netoo.elio%40hotmail.com&token=D3C5AC4D08154287AD56EDFE29036D31
+06/12/2018 14:30:05 PagSeguro.Session[info]: Session ID: 939715a294ec47cc918247c138789203

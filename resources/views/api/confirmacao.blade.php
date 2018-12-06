@@ -8,19 +8,33 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Confirmar dados da reserva</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" action="{{url('/Reserva/salvar')}}" method="post"><!--editar-->
+                
+                    <form class="form-horizontal" role="form" action="{{url('/apiCliente/pagseguro')}}" method="post"><!--editar-->
                         {{csrf_field()}}
+                        <input type="hidden" value="FA5AD922C90243D3B03FAC6602798DC3" name="token" checked>
+                        <input type="hidden" value="netoo.elio@hotmail.com" name="email" checked>
+                        <input type="hidden" value="BRL" name="currency" checked>
+                        <input type="hidden" value="{{$reserva->id}}" name="itemid" checked>
+                        <input type="hidden" value="{{$cliente->id}}" name="id" checked>
+
                         <input type="hidden" value="{{$cliente->nome}}" name="cliente" checked>&nbsp;
                         <div class="alert alert-info" role="alert"><label>Cliente Selecionado: {{$cliente->nome}} </label></div>
+
+                        <input type="hidden" value="{{$quarto->descricao}}" name="descricao" checked>&nbsp;
+                        <div class="alert alert-info" role="alert"><label>Quarto Selecionado: {{$quarto->descricao}} </label></div>
                         
-                        <input type="hidden" value="{{$dias}}" name="dias" checked>&nbsp;
+                        <input type="hidden" value="{{$dias}}" name="qtd" checked>&nbsp;
                         <div class="alert alert-info" role="alert"><label>Dias reservados: {{$dias}}</label></div>
 
-                        <input type="hidden" value="{{$quarto->valor}}" name="diaria" checked>&nbsp;
+                        <input type="hidden" value="{{$quarto->valor}}" name="valor" checked>&nbsp;
                         <div class="alert alert-info" role="alert"><label>Diária: {{$quarto->valor}}</label></div>
-                            <?php   $unit = $quarto->valor;
-                                    $total = $dias * $unit; ?>
-                        <input type="hidden" value="{{$total}}" name="dias" checked>&nbsp;
+
+                                <?php   
+                                    $unit = $quarto->valor;
+                                    $total = $dias * $unit; 
+                                ?>
+
+                        <input type="hidden" value="{{$total}}" name="total" checked>&nbsp;
                         <div class="alert alert-info" role="alert"><label>Total: {{$total}}</label></div>
 
                         <div class="form-group">

@@ -20,6 +20,7 @@ Route::group(array('prefix' => 'apiCliente'), function(){
     Route::get('busca', 'ApiController@busca');
     Route::post('select','ApiController@select');
     Route::post('checkout','ApiController@checkout');
+    Route::post('pagseguro', 'ApiController@pagseguro');
 
 });
 

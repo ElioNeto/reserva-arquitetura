@@ -6,20 +6,34 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Confirmar dados da reserva</div>
                 <div class="panel-body">
-                    <form class="form-horizontal" role="form" action="<?php echo e(url('/Reserva/salvar')); ?>" method="post"><!--editar-->
+                
+                    <form class="form-horizontal" role="form" action="<?php echo e(url('/apiCliente/pagseguro')); ?>" method="post"><!--editar-->
                         <?php echo e(csrf_field()); ?>
+
+                        <input type="hidden" value="FA5AD922C90243D3B03FAC6602798DC3" name="token" checked>
+                        <input type="hidden" value="netoo.elio@hotmail.com" name="email" checked>
+                        <input type="hidden" value="BRL" name="currency" checked>
+                        <input type="hidden" value="<?php echo e($reserva->id); ?>" name="itemid" checked>
+                        <input type="hidden" value="<?php echo e($cliente->id); ?>" name="id" checked>
 
                         <input type="hidden" value="<?php echo e($cliente->nome); ?>" name="cliente" checked>&nbsp;
                         <div class="alert alert-info" role="alert"><label>Cliente Selecionado: <?php echo e($cliente->nome); ?> </label></div>
+
+                        <input type="hidden" value="<?php echo e($quarto->descricao); ?>" name="descricao" checked>&nbsp;
+                        <div class="alert alert-info" role="alert"><label>Quarto Selecionado: <?php echo e($quarto->descricao); ?> </label></div>
                         
-                        <input type="hidden" value="<?php echo e($dias); ?>" name="dias" checked>&nbsp;
+                        <input type="hidden" value="<?php echo e($dias); ?>" name="qtd" checked>&nbsp;
                         <div class="alert alert-info" role="alert"><label>Dias reservados: <?php echo e($dias); ?></label></div>
 
-                        <input type="hidden" value="<?php echo e($quarto->valor); ?>" name="diaria" checked>&nbsp;
+                        <input type="hidden" value="<?php echo e($quarto->valor); ?>" name="valor" checked>&nbsp;
                         <div class="alert alert-info" role="alert"><label>Diária: <?php echo e($quarto->valor); ?></label></div>
-                            <?php   $unit = $quarto->valor;
-                                    $total = $dias * $unit; ?>
-                        <input type="hidden" value="<?php echo e($total); ?>" name="dias" checked>&nbsp;
+
+                                <?php   
+                                    $unit = $quarto->valor;
+                                    $total = $dias * $unit; 
+                                ?>
+
+                        <input type="hidden" value="<?php echo e($total); ?>" name="total" checked>&nbsp;
                         <div class="alert alert-info" role="alert"><label>Total: <?php echo e($total); ?></label></div>
 
                         <div class="form-group">

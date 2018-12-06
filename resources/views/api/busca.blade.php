@@ -26,6 +26,13 @@
                 </div>
                 @endif
 
+                 @if(session()->has('Er202'))
+                <div class="alert alert-danger" role="alert">
+                <b>CODE: {{session('Er202')}}</b>
+                Reserva não encontrada!
+                </div>
+                @endif
+
                 @if(session()->has('Er400'))
                 <div class="alert alert-danger" role="alert">
                 <b>CODE: {{session('Er400')}}</b>

@@ -25,6 +25,13 @@
                 </div>
                 <?php endif; ?>
 
+                 <?php if(session()->has('Er202')): ?>
+                <div class="alert alert-danger" role="alert">
+                <b>CODE: <?php echo e(session('Er202')); ?></b>
+                Reserva não encontrada!
+                </div>
+                <?php endif; ?>
+
                 <?php if(session()->has('Er400')): ?>
                 <div class="alert alert-danger" role="alert">
                 <b>CODE: <?php echo e(session('Er400')); ?></b>

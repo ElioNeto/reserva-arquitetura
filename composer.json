@@ -11,7 +11,9 @@
         "barryvdh/laravel-ide-helper": "^2.4",
         "pagseguro/pagseguro-php-sdk": "^5.0",
         "phpsc/pagseguro": "^1.0",
-        "nesbot/carbon": "^1.36"
+        "nesbot/carbon": "^1.36",
+        "indigophp/doctrine-annotation-autoload": "^0.1.0",
+        "michael/laravelpagseguro": "dev-master"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
