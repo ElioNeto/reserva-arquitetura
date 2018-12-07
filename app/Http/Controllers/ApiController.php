@@ -41,7 +41,7 @@ class ApiController extends Controller{
             //se o banco estiver vazio
             if( $j == 0){
                 $cliente = new Cliente();
-                $cliente->nome                  =$value->nome;
+                $cliente->nome                  =$value->name;
                 $cliente->endereco              =$value->endereco;
                 $cliente->cpf                   =$value->cpf;
                 $cliente->data_cadastro         =$value->data_cadastro;
